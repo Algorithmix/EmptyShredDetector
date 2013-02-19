@@ -20,6 +20,7 @@ namespace emptyShredDetector
 
         static bool isEmpty(Bitmap bmp)
         {
+            int threshold = 300; //threshold for number of "black" pixels
             ImageStatistics rgbStatistics = new ImageStatistics(bmp);
             int[] redValues = rgbStatistics.Red.Values;
             int[] greenValues = rgbStatistics.Green.Values;
@@ -37,7 +38,7 @@ namespace emptyShredDetector
                     zeroTally++;
             }
 
-            bool output = zeroTally > 300;
+            bool output = zeroTally > threshold;
             return output;
         }
     }
