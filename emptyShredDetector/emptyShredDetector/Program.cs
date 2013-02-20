@@ -12,7 +12,7 @@ namespace emptyShredDetector
     {
         static void Main(string[] args)
         {
-            Bitmap bmp = new Bitmap("C:\\Users\\jacob\\Pictures\\image1.png");
+            Bitmap bmp = new Bitmap("C:\\Users\\jacob\\Pictures\\shred.png");
             bool ans = isEmpty(bmp);
             Console.Write(ans);
             Console.ReadLine();
@@ -20,7 +20,8 @@ namespace emptyShredDetector
 
         static bool isEmpty(Bitmap bmp)
         {
-            int threshold = 300; //threshold for number of "black" pixels
+            int threshold = 80;  //threshold for number of zeroes in the histogram or number of missing grayscale values
+
             ImageStatistics rgbStatistics = new ImageStatistics(bmp);
             int[] redValues = rgbStatistics.Red.Values;
             int[] greenValues = rgbStatistics.Green.Values;
@@ -30,11 +31,8 @@ namespace emptyShredDetector
 
             for (int i = 0; i < 256; i++)
             {
-                if (redValues[i] == 0)
-                    zeroTally++;
-                if (greenValues[i] == 0)
-                    zeroTally++;
-                if (blueValues[i] == 0)
+                int value = (redValues[i] + greenValues[i] + blueValues[i]) / 3;
+                if (value == 0)
                     zeroTally++;
             }
 
