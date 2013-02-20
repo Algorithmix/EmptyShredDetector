@@ -12,5 +12,5 @@ The function is very simple.  It first finds the Histogram of the image.  Then i
 up the zeros that it encounters.  Shreds that are empty tend to have way more zeros than shreds with text on them.  This
 is becuase text fills up the color range (0-100) which are the color values that dark text has.  
 
-The threshold of 300 zeroes is based on experimental evidence only and it needs to be tested against a greater amount of
-shreds
+The threshold of 80 zeroes is based on experimental evidence from 70 shreds and it is more likely to provide a false negative
+than a false positive.
